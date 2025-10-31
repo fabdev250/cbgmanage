@@ -8,6 +8,7 @@ import DashboardOverview from './pages/DashboardOverview';
 import Students from './pages/Students';
 import GenericPage from './pages/GenericPage';
 import Admission from './pages/Admission';
+import Reports from './pages/Reports';
 import Program from './pages/Program';
 import Rooms from './pages/Rooms';
 import Refectory from './pages/Refectory';
@@ -32,7 +33,7 @@ function App() {
                 <Route path="/rooms" element={<Rooms />} />
                 <Route path="/programs" element={<Program />} />
                 <Route path="/seating" element={<Refectory />} />
-                <Route path="/raporu" element={<GenericPage title="Reports" />} />
+                <Route path="/reports" element={<Reports />} />
                 <Route path="/imyicarire" element={<GenericPage title="Behavior" />} />
                 <Route path="/ibikorwa" element={<GenericPage title="Activities" />} />
                 <Route path="/amatangazo" element={<GenericPage title="Announcements" />} />
