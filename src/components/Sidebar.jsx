@@ -1,8 +1,11 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
-  Home, Users, UserPlus, Building2, BookOpen, BarChart3, Star, 
-  Calendar, Bell, UserCog, Settings, FileText, Wrench, LogOut ,Table2Icon
+  Home, GraduationCap, UserPlus, Bed, CalendarDays, BarChart3, 
+  Utensils, Activity, Megaphone, UsersRound, Sliders, BookMarked, 
+  Building2, LogOut,
+  Settings2,
+  SettingsIcon
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -11,17 +14,17 @@ const Sidebar = () => {
 
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard', icon: Home, path: '/' },
-    { id: 'students', label: 'Students', icon: Users, path: '/students' },
+    { id: 'students', label: 'Students', icon: GraduationCap, path: '/students' },
     { id: 'new-admission', label: 'New Admission', icon: UserPlus, path: '/admission' },
-    { id: 'rooms', label: 'Rooms', icon: Building2, path: '/rooms' },
-    { id: 'programs', label: 'Programs', icon: BookOpen, path: '/programs' },
+    { id: 'rooms', label: 'Rooms', icon: Bed, path: '/rooms' },
+    { id: 'programs', label: 'Programs', icon: CalendarDays, path: '/programs' },
     { id: 'reports', label: 'Reports', icon: BarChart3, path: '/reports' },
-    { id: 'seating', label: 'Seating', icon: Table2Icon, path: '/seating' },
-    { id: 'activities', label: 'Activities', icon: Calendar, path: '/activities' },
-    { id: 'announcements', label: 'Announcements', icon: Bell, path: '/announcements' },
-    { id: 'users', label: 'Users', icon: UserCog, path: '/users' },
-    { id: 'configuration', label: 'Configuration', icon: Settings, path: '/configuration' },
-    { id: 'guidelines', label: 'Guidelines', icon: FileText, path: '/guidelines' }
+    { id: 'seating', label: 'Seating', icon: Utensils, path: '/seating' },
+    { id: 'activities', label: 'Activities', icon: Activity, path: '/activities' },
+    { id: 'announcements', label: 'Announcements', icon: Megaphone, path: '/announcements' },
+    { id: 'users', label: 'Users', icon: UsersRound, path: '/users' },
+    { id: 'Settings', label: 'Settings', icon: SettingsIcon, path: '/settings' },
+    { id: 'guidelines', label: 'Guidelines', icon: BookMarked, path: '/guidelines' }
   ];
 
   const handleLogout = () => {
