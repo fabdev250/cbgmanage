@@ -9,6 +9,7 @@ import Students from './pages/Students';
 import GenericPage from './pages/GenericPage';
 import Admission from './pages/Admission';
 import Program from './pages/Program';
+import Rooms from './pages/Rooms';
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/students" element={<Students />} />
                 <Route path="/admission" element={<Admission />} />
-                <Route path="/rooms" element={<GenericPage title="Rooms" />} />
+                <Route path="/rooms" element={<Rooms />} />
                 <Route path="/programs" element={<Program />} />
                 <Route path="/raporu" element={<GenericPage title="Reports" />} />
                 <Route path="/imyicarire" element={<GenericPage title="Behavior" />} />
