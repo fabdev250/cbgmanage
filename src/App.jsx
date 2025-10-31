@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Sidebar from './components/Sidebar';
+import TopBar from './components/TopBar';
+import Dashboard from './pages/Dashboard';
+import Students from './pages/Students';
+import GenericPage from './pages/GenericPage';
+import Admission from './pages/Admission';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Router>
+      <div className="min-h-screen bg-gray-50">
+        {/* Fixed positioned components */}
+        <Sidebar />
+        <TopBar />
+        
+        {/* Main content with proper spacing */}
+        <main className="ml-64 pt-16 min-h-screen">
+          <div className="p-6">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/students" element={<Students />} />
+              <Route path="/admission" element={<Admission />} />
+              <Route path="/rooms" element={<GenericPage title="Amacumbi" />} />
+              <Route path="/porogaramu" element={<GenericPage title="Porogaramu" />} />
+              <Route path="/raporu" element={<GenericPage title="Raporu" />} />
+              <Route path="/imyicarire" element={<GenericPage title="Imyicarire" />} />
+              <Route path="/ibikorwa" element={<GenericPage title="Ibikorwa" />} />
+              <Route path="/amatangazo" element={<GenericPage title="Amatangazo" />} />
+              <Route path="/abakoresha" element={<GenericPage title="Abakoresha" />} />
+              <Route path="/igenamiterere" element={<GenericPage title="Igenamiterere" />} />
+              <Route path="/amabwiriza" element={<GenericPage title="Amabwiriza" />} />
+              <Route path="/shyiraho-porogaramu" element={<GenericPage title="Shyiraho Porogaramu" />} />
+            </Routes>
+          </div>
+        </main>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Router>
+  );
 }
 
-export default App
+export default App;
