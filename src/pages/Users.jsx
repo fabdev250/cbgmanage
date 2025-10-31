@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { UserPlus, Search, MoreVertical, Mail, Shield, Edit, Trash2, Lock, UserCheck, Crown, Filter } from 'lucide-react';
+import { UserPlus, Search, MoreVertical, Mail, Shield, Edit, Trash2, Lock, UserCheck, Crown, Filter, Grid3x3, LayoutGrid, List, AlignJustify } from 'lucide-react';
 
 const Users = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRole, setSelectedRole] = useState('all');
   const [openMenu, setOpenMenu] = useState(null);
-  const [showAddModal, setShowAddModal] = useState(false);
+  const [viewMode, setViewMode] = useState('list'); // list, grid, card, large, medium, small
 
   // Mock users data
   const users = [
@@ -89,54 +89,89 @@ const Users = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
+    <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto">
-        {/* Enhanced Header */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 p-8 mb-6">
-          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-6">
-            <div className="flex items-center gap-4">
-              <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg">
-                <Shield className="w-8 h-8 text-white" />
-              </div>
-              <div>
-                <h1 className="text-3xl font-bold text-gray-900 flex items-center gap-2">
-                  User Management
-                </h1>
-                <p className="text-sm text-gray-600 mt-1">Manage user accounts, roles and permissions</p>
-              </div>
+        {/* Simplified Header */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4 mb-4">
+            <div>
+              <h1 className="text-2xl font-bold text-gray-900">User Management</h1>
+              <p className="text-sm text-gray-600 mt-1">Manage user accounts and permissions</p>
             </div>
             <button 
-              onClick={() => setShowAddModal(true)}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-3 rounded-xl font-medium flex items-center gap-2 shadow-lg hover:shadow-xl transition-all transform hover:scale-105"
+              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors"
             >
               <UserPlus className="w-5 h-5" />
-              Add New User
+              Add User
             </button>
           </div>
 
-          {/* Enhanced Search and Filter */}
-          <div className="flex flex-col sm:flex-row gap-4">
+          {/* Search, Filter and View Options */}
+          <div className="flex flex-col lg:flex-row gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input
                 type="text"
-                placeholder="Search users by name or email..."
+                placeholder="Search users..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
-            <div className="relative">
-              <Filter className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <select
-                value={selectedRole}
-                onChange={(e) => setSelectedRole(e.target.value)}
-                className="pl-12 pr-8 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent appearance-none bg-white transition-all min-w-[200px]"
+            <select
+              value={selectedRole}
+              onChange={(e) => setSelectedRole(e.target.value)}
+              className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+            >
+              <option value="all">All Roles</option>
+              <option value="administrator">Administrators</option>
+              <option value="patron">Patrons</option>
+            </select>
+            
+            {/* View Mode Toggles */}
+            <div className="flex items-center gap-1 border border-gray-300 rounded-lg p-1">
+              <button
+                onClick={() => setViewMode('list')}
+                className={`p-2 rounded transition-colors ${viewMode === 'list' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                title="List View"
               >
-                <option value="all">All Roles</option>
-                <option value="administrator">Administrators</option>
-                <option value="patron">Patrons</option>
-              </select>
+                <AlignJustify className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('grid')}
+                className={`p-2 rounded transition-colors ${viewMode === 'grid' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                title="Grid View"
+              >
+                <Grid3x3 className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('card')}
+                className={`p-2 rounded transition-colors ${viewMode === 'card' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                title="Card View"
+              >
+                <LayoutGrid className="w-4 h-4" />
+              </button>
+              <button
+                onClick={() => setViewMode('large')}
+                className={`p-2 rounded transition-colors ${viewMode === 'large' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                title="Large Icons"
+              >
+                <span className="text-lg font-bold">L</span>
+              </button>
+              <button
+                onClick={() => setViewMode('medium')}
+                className={`p-2 rounded transition-colors ${viewMode === 'medium' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                title="Medium Icons"
+              >
+                <span className="text-sm font-bold">M</span>
+              </button>
+              <button
+                onClick={() => setViewMode('small')}
+                className={`p-2 rounded transition-colors ${viewMode === 'small' ? 'bg-blue-600 text-white' : 'text-gray-600 hover:bg-gray-100'}`}
+                title="Small Icons"
+              >
+                <span className="text-xs font-bold">S</span>
+              </button>
             </div>
           </div>
         </div>
@@ -189,150 +224,212 @@ const Users = () => {
           </div>
         </div>
 
-        {/* Enhanced Users List */}
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-200 overflow-hidden">
-          <div className="bg-gradient-to-r from-gray-50 to-blue-50 p-6 border-b border-gray-200">
+        {/* Users Display - Changes based on view mode */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+          <div className="p-4 border-b border-gray-200">
             <div className="flex items-center justify-between">
-              <div>
-                <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
-                  <UserCheck className="w-6 h-6 text-blue-600" />
-                  Registered Users
-                </h2>
-                <p className="text-sm text-gray-600 mt-1">Manage all system users and their permissions</p>
-              </div>
-              <div className="text-right">
-                <p className="text-2xl font-bold text-blue-600">{filteredUsers.length}</p>
-                <p className="text-xs text-gray-500">Active Users</p>
-              </div>
+              <h2 className="text-lg font-bold text-gray-900">Users ({filteredUsers.length})</h2>
             </div>
           </div>
 
-          <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gradient-to-r from-gray-50 to-gray-100 border-b-2 border-gray-200">
-                <tr>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                    User Profile
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                    Email Address
-                  </th>
-                  <th className="px-6 py-4 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
-                    Role & Status
-                  </th>
-                  <th className="px-6 py-4 text-center text-xs font-bold text-gray-700 uppercase tracking-wider">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                {filteredUsers.map((user, index) => (
-                  <tr key={user.id} className="hover:bg-blue-50/50 transition-all group">
-                    <td className="px-6 py-5 whitespace-nowrap">
-                      <div className="flex items-center gap-4">
-                        <div className={`w-12 h-12 ${user.bgColor} rounded-xl flex items-center justify-center shadow-md transform group-hover:scale-110 transition-transform`}>
-                          <span className="text-white font-bold text-lg">{user.initials}</span>
-                        </div>
-                        <div>
-                          <p className="text-sm font-bold text-gray-900">{user.name}</p>
-                          <p className="text-xs text-gray-500">User ID: #{user.id}</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="px-6 py-5 whitespace-nowrap">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 bg-gray-100 rounded-lg flex items-center justify-center">
-                          <Mail className="w-4 h-4 text-gray-600" />
-                        </div>
-                        <span className="text-sm text-gray-700">{user.email}</span>
-                      </div>
-                    </td>
-                    <td className="px-6 py-5 whitespace-nowrap">
-                      {user.role === 'administrator' ? (
-                        <span className="inline-flex items-center px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-red-500 to-red-600 text-white shadow-md">
-                          <Crown className="w-3.5 h-3.5 mr-1.5" />
-                          Administrator
-                        </span>
-                      ) : (
-                        <span className="inline-flex items-center px-4 py-2 rounded-xl text-xs font-bold bg-gradient-to-r from-blue-500 to-blue-600 text-white shadow-md">
-                          <Shield className="w-3.5 h-3.5 mr-1.5" />
-                          Patron
-                        </span>
-                      )}
-                    </td>
-                    <td className="px-6 py-5 whitespace-nowrap">
-                      <div className="flex items-center justify-center gap-2">
-                        <button
-                          onClick={() => setOpenMenu(openMenu === user.id ? null : user.id)}
-                          className="p-2 hover:bg-blue-100 rounded-xl transition-colors relative"
-                        >
-                          <MoreVertical className="w-5 h-5 text-gray-600" />
-                        </button>
-
-                        {openMenu === user.id && (
-                          <div className="absolute right-8 mt-32 w-56 bg-white rounded-xl shadow-2xl border border-gray-200 z-20 overflow-hidden">
-                            <button className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50 transition-colors">
-                              <Edit className="w-4 h-4 text-blue-600" />
-                              Edit User
-                            </button>
-                            <button className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-gray-700 hover:bg-blue-50 transition-colors border-t border-gray-100">
-                              <Lock className="w-4 h-4 text-orange-600" />
-                              Reset Password
-                            </button>
-                            <button className="w-full flex items-center gap-3 px-4 py-3 text-sm font-medium text-red-600 hover:bg-red-50 transition-colors border-t border-gray-100">
-                              <Trash2 className="w-4 h-4" />
-                              Delete User
-                            </button>
-                          </div>
-                        )}
-                      </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {filteredUsers.length === 0 && (
-            <div className="p-16 text-center">
-              <div className="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                <UserCheck className="w-12 h-12 text-gray-400" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">No Users Found</h3>
-              <p className="text-gray-500 mb-6">No users match your search criteria. Try adjusting your filters.</p>
+          {filteredUsers.length === 0 ? (
+            <div className="p-12 text-center">
+              <UserCheck className="w-12 h-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-bold text-gray-900 mb-2">No Users Found</h3>
+              <p className="text-gray-500 mb-4">No users match your search criteria.</p>
               <button 
                 onClick={() => {
                   setSearchQuery('');
                   setSelectedRole('all');
                 }}
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
               >
                 Clear Filters
               </button>
             </div>
-          )}
+          ) : (
+            <>
+              {/* List View */}
+              {viewMode === 'list' && (
+                <div className="overflow-x-auto">
+                  <table className="w-full">
+                    <thead className="bg-gray-50 border-b border-gray-200">
+                      <tr>
+                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">User</th>
+                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Email</th>
+                        <th className="px-6 py-3 text-left text-xs font-semibold text-gray-700 uppercase">Role</th>
+                        <th className="px-6 py-3 text-right text-xs font-semibold text-gray-700 uppercase">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-100">
+                      {filteredUsers.map((user) => (
+                        <tr key={user.id} className="hover:bg-gray-50">
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <div className="flex items-center gap-3">
+                              <div className={`w-10 h-10 ${user.bgColor} rounded-lg flex items-center justify-center`}>
+                                <span className="text-white font-bold">{user.initials}</span>
+                              </div>
+                              <span className="text-sm font-medium text-gray-900">{user.name}</span>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">{user.email}</td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium ${
+                              user.role === 'administrator' 
+                                ? 'bg-red-100 text-red-700' 
+                                : 'bg-blue-100 text-blue-700'
+                            }`}>
+                              {user.role === 'administrator' ? 'Administrator' : 'Patron'}
+                            </span>
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap text-right">
+                            <button
+                              onClick={() => setOpenMenu(openMenu === user.id ? null : user.id)}
+                              className="p-2 hover:bg-gray-100 rounded-lg"
+                            >
+                              <MoreVertical className="w-5 h-5 text-gray-600" />
+                            </button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              )}
 
-          {/* Enhanced Footer */}
-          {filteredUsers.length > 0 && (
-            <div className="px-6 py-4 border-t-2 border-gray-200 bg-gradient-to-r from-gray-50 to-blue-50">
-              <div className="flex items-center justify-between">
-                <p className="text-sm text-gray-700">
-                  Showing <span className="font-bold text-blue-600">{filteredUsers.length}</span> of{' '}
-                  <span className="font-bold text-blue-600">{users.length}</span> users
-                </p>
-                <div className="flex items-center gap-2">
-                  <button className="px-4 py-2 border-2 border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-white hover:border-blue-500 transition-all">
-                    Previous
-                  </button>
-                  <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg text-sm font-medium shadow-md">
-                    1
-                  </button>
-                  <button className="px-4 py-2 border-2 border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-white hover:border-blue-500 transition-all">
-                    Next
-                  </button>
+              {/* Grid View */}
+              {viewMode === 'grid' && (
+                <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                  {filteredUsers.map((user) => (
+                    <div key={user.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow">
+                      <div className="flex items-center justify-between mb-3">
+                        <div className={`w-12 h-12 ${user.bgColor} rounded-lg flex items-center justify-center`}>
+                          <span className="text-white font-bold">{user.initials}</span>
+                        </div>
+                        <button
+                          onClick={() => setOpenMenu(openMenu === user.id ? null : user.id)}
+                          className="p-1 hover:bg-gray-100 rounded"
+                        >
+                          <MoreVertical className="w-5 h-5 text-gray-600" />
+                        </button>
+                      </div>
+                      <h3 className="font-bold text-gray-900 mb-1">{user.name}</h3>
+                      <p className="text-sm text-gray-600 mb-2 truncate">{user.email}</p>
+                      <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${
+                        user.role === 'administrator' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
+                      }`}>
+                        {user.role === 'administrator' ? 'Admin' : 'Patron'}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Card View */}
+              {viewMode === 'card' && (
+                <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {filteredUsers.map((user) => (
+                    <div key={user.id} className="border border-gray-200 rounded-lg p-6 hover:shadow-lg transition-shadow">
+                      <div className="flex items-start justify-between mb-4">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-16 h-16 ${user.bgColor} rounded-xl flex items-center justify-center`}>
+                            <span className="text-white font-bold text-xl">{user.initials}</span>
+                          </div>
+                          <div>
+                            <h3 className="font-bold text-gray-900">{user.name}</h3>
+                            <p className="text-xs text-gray-500">ID: #{user.id}</p>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() => setOpenMenu(openMenu === user.id ? null : user.id)}
+                          className="p-2 hover:bg-gray-100 rounded-lg"
+                        >
+                          <MoreVertical className="w-5 h-5 text-gray-600" />
+                        </button>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2 text-sm text-gray-700">
+                          <Mail className="w-4 h-4 text-gray-400" />
+                          <span className="truncate">{user.email}</span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Shield className="w-4 h-4 text-gray-400" />
+                          <span className={`text-xs font-medium px-2 py-1 rounded ${
+                            user.role === 'administrator' ? 'bg-red-100 text-red-700' : 'bg-blue-100 text-blue-700'
+                          }`}>
+                            {user.role === 'administrator' ? 'Administrator' : 'Patron'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Large Icon View */}
+              {viewMode === 'large' && (
+                <div className="p-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                  {filteredUsers.map((user) => (
+                    <div key={user.id} className="flex flex-col items-center p-4 hover:bg-gray-50 rounded-lg transition-colors">
+                      <div className={`w-20 h-20 ${user.bgColor} rounded-2xl flex items-center justify-center mb-2`}>
+                        <span className="text-white font-bold text-2xl">{user.initials}</span>
+                      </div>
+                      <p className="text-sm font-medium text-gray-900 text-center truncate w-full">{user.name}</p>
+                      <p className="text-xs text-gray-500">{user.role === 'administrator' ? 'Admin' : 'Patron'}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Medium Icon View */}
+              {viewMode === 'medium' && (
+                <div className="p-4 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3">
+                  {filteredUsers.map((user) => (
+                    <div key={user.id} className="flex flex-col items-center p-3 hover:bg-gray-50 rounded-lg transition-colors">
+                      <div className={`w-14 h-14 ${user.bgColor} rounded-xl flex items-center justify-center mb-2`}>
+                        <span className="text-white font-bold text-lg">{user.initials}</span>
+                      </div>
+                      <p className="text-xs font-medium text-gray-900 text-center truncate w-full">{user.name}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Small Icon View */}
+              {viewMode === 'small' && (
+                <div className="p-4 grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-2">
+                  {filteredUsers.map((user) => (
+                    <div key={user.id} className="flex flex-col items-center p-2 hover:bg-gray-50 rounded-lg transition-colors" title={user.name}>
+                      <div className={`w-10 h-10 ${user.bgColor} rounded-lg flex items-center justify-center mb-1`}>
+                        <span className="text-white font-bold text-sm">{user.initials}</span>
+                      </div>
+                      <p className="text-xs text-gray-900 text-center truncate w-full">{user.name.split(' ')[0]}</p>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Pagination */}
+              <div className="px-6 py-4 border-t border-gray-200 bg-gray-50">
+                <div className="flex items-center justify-between">
+                  <p className="text-sm text-gray-700">
+                    Showing <span className="font-medium">{filteredUsers.length}</span> of{' '}
+                    <span className="font-medium">{users.length}</span> users
+                  </p>
+                  <div className="flex items-center gap-2">
+                    <button className="px-3 py-1 border border-gray-300 rounded text-sm text-gray-700 hover:bg-white">
+                      Previous
+                    </button>
+                    <button className="px-3 py-1 bg-blue-600 text-white rounded text-sm">
+                      1
+                    </button>
+                    <button className="px-3 py-1 border border-gray-300 rounded text-sm text-gray-700 hover:bg-white">
+                      Next
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </>
           )}
         </div>
       </div>
