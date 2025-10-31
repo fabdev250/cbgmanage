@@ -39,9 +39,13 @@ const TopBar = () => {
       { name: 'Dashboard', path: '/' },
       { name: 'Programs', path: '/programs' }
     ],
-    '/refectory': [
+    '/seating': [
       { name: 'Dashboard', path: '/' },
-      { name: 'Refectory', path: '/refectory' }
+      { name: 'Seating Plan', path: '/seating' }
+    ],
+    '/activities': [
+      { name: 'Dashboard', path: '/' },
+      { name: 'Activities', path: '/activities' }
     ],
     '/raporu': [
       { name: 'Dashboard', path: '/' },
@@ -53,7 +57,7 @@ const TopBar = () => {
     ],
     '/ibikorwa': [
       { name: 'Dashboard', path: '/' },
-      { name: 'Activities', path: '/ibikorwa' }
+      { name: 'Activities', path: '/activities' }
     ],
     '/amatangazo': [
       { name: 'Dashboard', path: '/' },
