@@ -14,7 +14,8 @@ import {
   UserCircle,
   UserCheck,
   UserCog,
-  UserSquare
+  UserSquare,
+  FileText
 } from 'lucide-react';
 
 // Mock data grouped by class
@@ -191,18 +192,18 @@ function Students() {
   const allStudentsCount = Object.values(studentsByClass).flat().length;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+    <div className="min-h-screen bg-slate-50">
       {/* Header Section */}
-      <div className="bg-white border-b border-slate-200 shadow-sm">
+      <div className="bg-white border-b border-slate-200">
         <div className="px-4 sm:px-6 py-4 sm:py-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4 sm:mb-6">
             <div>
-              <h1 className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">Students Directory</h1>
-              <p className="text-xs sm:text-sm text-slate-600">Manage and view all enrolled students</p>
+              <h1 className="text-2xl sm:text-3xl font-bold text-blue-600 mb-1">Reports & Analytics</h1>
+              <p className="text-xs sm:text-sm text-slate-500">Generate and download institutional reports</p>
             </div>
-            <button className="flex items-center gap-2 bg-green-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-green-700 transition-colors shadow-sm text-sm">
-              <UserPlus className="w-4 h-4" />
-              <span className="font-medium">Add Student</span>
+            <button className="flex items-center gap-2 bg-green-600 text-white px-3 sm:px-4 py-2 rounded-lg hover:bg-slate-900 transition-colors text-sm">
+              <FileText className="w-4 h-4 " />
+              <span className="font-medium">Generate Report</span>
             </button>
           </div>
 
