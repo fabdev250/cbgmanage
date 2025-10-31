@@ -1,13 +1,23 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Bell, User, Settings, LogOut, Menu, ChevronRight, Home } from 'lucide-react';
+import { Bell, User, Settings, LogOut, Menu, ChevronRight, Home, Globe } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 const TopBar = () => {
   const location = useLocation();
+  const { language, changeLanguage, t } = useLanguage();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
   const notificationRef = useRef(null);
   const profileRef = useRef(null);
+  const languageRef = useRef(null);
+
+  const languages = [
+    { code: 'en', name: 'English', flag: '🇬🇧' },
+    { code: 'rw', name: 'Kinyarwanda', flag: '🇷🇼' },
+    { code: 'fr', name: 'Français', flag: '🇫🇷' }
+  ];
 
   // Breadcrumb mapping
   const breadcrumbMap = {
@@ -25,9 +35,9 @@ const TopBar = () => {
       { name: 'Dashboard', path: '/' },
       { name: 'Rooms', path: '/rooms' }
     ],
-    '/porogaramu': [
+    '/programs': [
       { name: 'Dashboard', path: '/' },
-      { name: 'Programs', path: '/porogaramu' }
+      { name: 'Programs', path: '/programs' }
     ],
     '/raporu': [
       { name: 'Dashboard', path: '/' },
@@ -59,7 +69,7 @@ const TopBar = () => {
     ],
     '/shyiraho-porogaramu': [
       { name: 'Dashboard', path: '/' },
-      { name: 'Programs', path: '/porogaramu' },
+      { name: 'Programs', path: '/programs' },
       { name: 'Setup Program', path: '/shyiraho-porogaramu' }
     ]
   };
@@ -109,6 +119,9 @@ const TopBar = () => {
       }
       if (profileRef.current && !profileRef.current.contains(event.target)) {
         setIsProfileOpen(false);
+      }
+      if (languageRef.current && !languageRef.current.contains(event.target)) {
+        setIsLanguageOpen(false);
       }
     };
 
@@ -167,8 +180,49 @@ const TopBar = () => {
         </div>
       </div>
 
-      {/* Right Section - Notifications and Profile */}
+      {/* Right Section - Language, Notifications and Profile */}
       <div className="flex items-center space-x-4">
+        {/* Language Switcher */}
+        <div className="relative" ref={languageRef}>
+          <button
+            onClick={() => setIsLanguageOpen(!isLanguageOpen)}
+            className="flex items-center space-x-2 p-2 hover:bg-gray-100 rounded-lg transition duration-200"
+          >
+            <Globe className="w-5 h-5 text-gray-600" />
+            <span className="hidden md:block text-sm font-medium text-gray-700">
+              {languages.find(lang => lang.code === language)?.flag}
+            </span>
+          </button>
+
+          {/* Language Dropdown Menu */}
+          {isLanguageOpen && (
+            <div className="absolute right-0 mt-2 w-48 bg-white rounded-lg shadow-lg border border-gray-200 z-50">
+              <div className="p-2">
+                {languages.map((lang) => (
+                  <button
+                    key={lang.code}
+                    onClick={() => {
+                      changeLanguage(lang.code);
+                      setIsLanguageOpen(false);
+                    }}
+                    className={`w-full flex items-center space-x-3 px-3 py-2 text-sm rounded-lg transition duration-200 ${
+                      language === lang.code
+                        ? 'bg-blue-50 text-blue-700 font-medium'
+                        : 'text-gray-700 hover:bg-gray-100'
+                    }`}
+                  >
+                    <span className="text-lg">{lang.flag}</span>
+                    <span>{lang.name}</span>
+                    {language === lang.code && (
+                      <span className="ml-auto text-blue-600">✓</span>
+                    )}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+
         {/* Notifications Dropdown */}
         <div className="relative" ref={notificationRef}>
           <button
