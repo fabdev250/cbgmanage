@@ -11,6 +11,7 @@ import Admission from './pages/Admission';
 import Program from './pages/Program';
 import Refectory from './pages/Refectory';
 import Activities from './pages/Activities';
+import Users from './pages/Users';
 
 function App() {
   return (
@@ -35,7 +36,7 @@ function App() {
                 <Route path="/imyicarire" element={<GenericPage title="Behavior" />} />
                 <Route path="/activities" element={<Activities />} />
                 <Route path="/amatangazo" element={<GenericPage title="Announcements" />} />
-                <Route path="/abakoresha" element={<GenericPage title="Users" />} />
+                <Route path="/users" element={<Users />} />
                 <Route path="/igenamiterere" element={<GenericPage title="Configuration" />} />
                 <Route path="/amabwiriza" element={<GenericPage title="Guidelines" />} />
                 <Route path="/shyiraho-porogaramu" element={<GenericPage title="Setup Program" />} />
