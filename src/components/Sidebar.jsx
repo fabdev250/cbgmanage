@@ -21,7 +21,7 @@ const Sidebar = () => {
     { id: 'activities', label: 'Activities', icon: Activity, path: '/activities' },
     { id: 'announcements', label: 'Announcements', icon: Megaphone, path: '/announcements' },
     { id: 'users', label: 'Users', icon: UsersRound, path: '/users' },
-    { id: 'configuration', label: 'Configuration', icon: Sliders, path: '/configuration' },
+    { id: 'configuration', label: 'Configuration', icon: Sliders, path: '/settings' },
     { id: 'guidelines', label: 'Guidelines', icon: BookMarked, path: '/guidelines' }
   ];
 

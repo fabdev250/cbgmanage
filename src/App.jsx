@@ -13,6 +13,7 @@ import Reports from './pages/Reports';
 import Program from './pages/Program';
 import Refectory from './pages/Refectory';
 import Activities from './pages/Activities';
+import Configuration from './pages/Configuration';
 import Users from './pages/Users';
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
                 <Route path="/activities" element={<Activities />} />
                 <Route path="/amatangazo" element={<GenericPage title="Announcements" />} />
                 <Route path="/users" element={<Users />} />
-                <Route path="/igenamiterere" element={<GenericPage title="Configuration" />} />
+                <Route path="/settings" element={<GenericPage title="Configuration" />} />
                 <Route path="/amabwiriza" element={<GenericPage title="Guidelines" />} />
                 <Route path="/shyiraho-porogaramu" element={<GenericPage title="Setup Program" />} />
               </Routes>
