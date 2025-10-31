@@ -195,7 +195,7 @@ const Program = () => {
                 </div>
                 
                 <div className="p-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {/* Morning Shift */}
                     <div className="relative group">
                       <div className="absolute inset-0 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl opacity-5 group-hover:opacity-10 transition-opacity"></div>
@@ -205,15 +205,14 @@ const Program = () => {
                             <span className="text-xl">☀️</span>
                           </div>
                           <div>
-                            <h4 className="font-bold text-gray-900">Morning</h4>
-                            <p className="text-xs text-orange-600">7:00 AM - 12:00 PM</p>
+                            <h4 className="font-bold text-lg text-gray-900">Morning</h4>
                           </div>
                         </div>
                         
                         <div className="space-y-3">
                           <div className="bg-white rounded-lg p-3 border border-orange-200">
                             <p className="text-xs text-gray-500 mb-1">Class Group</p>
-                            <p className="font-bold text-orange-900">{dayData.morning.class}</p>
+                            <p className="font-bold text-lg text-orange-900">{dayData.morning.class}</p>
                           </div>
                           
                           <div className="bg-white rounded-lg p-3 border border-orange-200">
@@ -233,45 +232,8 @@ const Program = () => {
                       </div>
                     </div>
 
-                    {/* Afternoon Shift */}
-                    <div className="relative group">
-                      <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl opacity-5 group-hover:opacity-10 transition-opacity"></div>
-                      <div className="relative border-2 border-blue-300 rounded-xl p-5 bg-gradient-to-br from-blue-50 to-white hover:shadow-lg transition-all duration-300">
-                        <div className="flex items-center gap-3 mb-4">
-                          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-md">
-                            <span className="text-xl">🌤️</span>
-                          </div>
-                          <div>
-                            <h4 className="font-bold text-gray-900">Afternoon</h4>
-                            <p className="text-xs text-blue-600">12:00 PM - 5:00 PM</p>
-                          </div>
-                        </div>
-                        
-                        <div className="space-y-3">
-                          <div className="bg-white rounded-lg p-3 border border-blue-200">
-                            <p className="text-xs text-gray-500 mb-1">Class Group</p>
-                            <p className="font-bold text-blue-900">{dayData.afternoon.class}</p>
-                          </div>
-                          
-                          <div className="bg-white rounded-lg p-3 border border-blue-200">
-                            <p className="text-xs text-gray-500 mb-2">Students ({dayData.afternoon.students.length})</p>
-                            <div className="space-y-1.5">
-                              {dayData.afternoon.students.map((student, idx) => (
-                                <div key={idx} className="flex items-center gap-2 text-sm">
-                                  <span className="w-5 h-5 bg-blue-500 text-white rounded-full flex items-center justify-center text-xs font-semibold">
-                                    {idx + 1}
-                                  </span>
-                                  <span className="text-gray-700">{student}</span>
-                                </div>
-                              ))}
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
                     {/* Evening Shift */}
-                    <div className="relative group md:col-span-2 lg:col-span-1">
+                    <div className="relative group">
                       <div className="absolute inset-0 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-xl opacity-5 group-hover:opacity-10 transition-opacity"></div>
                       <div className="relative border-2 border-indigo-300 rounded-xl p-5 bg-gradient-to-br from-indigo-50 to-white hover:shadow-lg transition-all duration-300">
                         <div className="flex items-center gap-3 mb-4">
@@ -279,15 +241,14 @@ const Program = () => {
                             <span className="text-xl">🌙</span>
                           </div>
                           <div>
-                            <h4 className="font-bold text-gray-900">Evening</h4>
-                            <p className="text-xs text-indigo-600">5:00 PM - 8:00 PM</p>
+                            <h4 className="font-bold text-lg text-gray-900">Evening</h4>
                           </div>
                         </div>
                         
                         <div className="space-y-3">
                           <div className="bg-white rounded-lg p-3 border border-indigo-200">
                             <p className="text-xs text-gray-500 mb-1">Class Group</p>
-                            <p className="font-bold text-indigo-900">{dayData.evening.class}</p>
+                            <p className="font-bold text-lg text-indigo-900">{dayData.evening.class}</p>
                           </div>
                           
                           <div className="bg-white rounded-lg p-3 border border-indigo-200">
