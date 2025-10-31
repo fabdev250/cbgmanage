@@ -2,10 +2,12 @@ import React, { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Bell, User, Settings, LogOut, Menu, ChevronRight, Home, Globe } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
+import { useToast } from './Toast';
 
 const TopBar = () => {
   const location = useLocation();
   const { language, changeLanguage, t } = useLanguage();
+  const { showSuccess, showInfo } = useToast();
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isLanguageOpen, setIsLanguageOpen] = useState(false);
@@ -18,6 +20,12 @@ const TopBar = () => {
     { code: 'rw', name: 'Kinyarwanda', flag: '🇷🇼' },
     { code: 'fr', name: 'Français', flag: '🇫🇷' }
   ];
+
+  const handleLanguageChange = (langCode, langName) => {
+    changeLanguage(langCode);
+    setIsLanguageOpen(false);
+    showSuccess(`Language changed to ${langName}`, 2000);
+  };
 
   // Breadcrumb mapping
   const breadcrumbMap = {
@@ -213,10 +221,7 @@ const TopBar = () => {
                 {languages.map((lang) => (
                   <button
                     key={lang.code}
-                    onClick={() => {
-                      changeLanguage(lang.code);
-                      setIsLanguageOpen(false);
-                    }}
+                    onClick={() => handleLanguageChange(lang.code, lang.name)}
                     className={`w-full flex items-center space-x-3 px-3 py-2 text-sm rounded-lg transition duration-200 ${
                       language === lang.code
                         ? 'bg-blue-50 text-blue-700 font-medium'

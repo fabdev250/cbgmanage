@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { UserPlus, Search, MoreVertical, Mail, Shield, Edit, Trash2, Lock, UserCheck, Crown, Filter, Grid3x3, LayoutGrid, List, AlignJustify } from 'lucide-react';
+import { useToast } from '../components/Toast';
 
 const Users = () => {
+  const { showSuccess, showError, showWarning, showInfo } = useToast();
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedRole, setSelectedRole] = useState('all');
   const [openMenu, setOpenMenu] = useState(null);
@@ -88,6 +90,26 @@ const Users = () => {
     patrons: users.filter(u => u.role === 'patron').length
   };
 
+  // Handler functions with toast notifications
+  const handleAddUser = () => {
+    showInfo('Add user functionality coming soon!');
+  };
+
+  const handleEditUser = (userName) => {
+    setOpenMenu(null);
+    showInfo(`Edit user: ${userName}`);
+  };
+
+  const handleResetPassword = (userName) => {
+    setOpenMenu(null);
+    showWarning(`Password reset requested for ${userName}`);
+  };
+
+  const handleDeleteUser = (userName) => {
+    setOpenMenu(null);
+    showError(`Delete confirmation required for ${userName}`);
+  };
+
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto">
@@ -99,6 +121,7 @@ const Users = () => {
               <p className="text-sm text-gray-600 mt-1">Manage user accounts and permissions</p>
             </div>
             <button 
+              onClick={handleAddUser}
               className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium flex items-center gap-2 transition-colors"
             >
               <UserPlus className="w-5 h-5" />

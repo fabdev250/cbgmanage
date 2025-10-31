@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
+import { ToastProvider } from './components/Toast';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import Dashboard from './pages/Dashboard';
@@ -16,11 +17,12 @@ import Users from './pages/Users';
 function App() {
   return (
     <LanguageProvider>
-      <Router>
-        <div className="min-h-screen bg-gray-50">
-          {/* Fixed positioned components */}
-          <Sidebar />
-          <TopBar />
+      <ToastProvider>
+        <Router>
+          <div className="min-h-screen bg-gray-50">
+            {/* Fixed positioned components */}
+            <Sidebar />
+            <TopBar />
           
           {/* Main content with proper spacing */}
           <main className="ml-64 pt-16 min-h-screen">
@@ -45,6 +47,7 @@ function App() {
           </main>
         </div>
       </Router>
+      </ToastProvider>
     </LanguageProvider>
   );
 }
