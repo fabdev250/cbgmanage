@@ -20,7 +20,7 @@ const Sidebar = () => {
     { id: 'activities', label: 'Activities', icon: Calendar, path: '/activities' },
     { id: 'announcements', label: 'Announcements', icon: Bell, path: '/announcements' },
     { id: 'users', label: 'Users', icon: UserCog, path: '/users' },
-    { id: 'configuration', label: 'Configuration', icon: Settings, path: '/configuration' },
+    { id: 'Settings', label: 'Settings', icon: Settings, path: '/settings' },
     { id: 'guidelines', label: 'Guidelines', icon: FileText, path: '/guidelines' }
   ];
 
