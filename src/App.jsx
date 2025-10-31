@@ -15,6 +15,7 @@ import Refectory from './pages/Refectory';
 import Activities from './pages/Activities';
 import Users from './pages/Users';
 import Configuration from './pages/Configuration';
+import Rooms from './pages/Rooms';
 
 function App() {
   return (
@@ -33,7 +34,7 @@ function App() {
                 <Route path="/" element={<Dashboard />} />
                 <Route path="/students" element={<Students />} />
                 <Route path="/admission" element={<Admission />} />
-                <Route path="/rooms" element={<GenericPage title="Rooms" />} />
+                <Route path="/rooms" element={<Rooms />} />
                 <Route path="/programs" element={<Program />} />
                 <Route path="/seating" element={<Refectory />} />
                 <Route path="/reports" element={<Reports />} />
