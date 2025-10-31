@@ -176,50 +176,41 @@ const Users = () => {
           </div>
         </div>
 
-        {/* Enhanced Statistics Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-6">
-          <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                <UserCheck className="w-7 h-7 text-white" />
+        {/* Statistics Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-6">
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Total Users</p>
+                <p className="text-2xl font-bold text-gray-900">{roleStats.total}</p>
               </div>
-              <div className="text-right">
-                <p className="text-sm text-blue-100">Total Users</p>
-                <p className="text-4xl font-bold">{roleStats.total}</p>
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                <UserCheck className="w-6 h-6 text-blue-600" />
               </div>
-            </div>
-            <div className="h-1 bg-white/20 rounded-full">
-              <div className="h-1 bg-white rounded-full w-full"></div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-red-500 to-red-600 rounded-2xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                <Crown className="w-7 h-7 text-white" />
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Administrators</p>
+                <p className="text-2xl font-bold text-gray-900">{roleStats.administrators}</p>
               </div>
-              <div className="text-right">
-                <p className="text-sm text-red-100">Administrators</p>
-                <p className="text-4xl font-bold">{roleStats.administrators}</p>
+              <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                <Crown className="w-6 h-6 text-red-600" />
               </div>
-            </div>
-            <div className="h-1 bg-white/20 rounded-full">
-              <div className="h-1 bg-white rounded-full" style={{width: `${(roleStats.administrators / roleStats.total) * 100}%`}}></div>
             </div>
           </div>
 
-          <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-2xl shadow-lg p-6 text-white transform hover:scale-105 transition-transform">
-            <div className="flex items-center justify-between mb-4">
-              <div className="w-14 h-14 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                <Shield className="w-7 h-7 text-white" />
+          <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <p className="text-sm text-gray-600">Patrons</p>
+                <p className="text-2xl font-bold text-gray-900">{roleStats.patrons}</p>
               </div>
-              <div className="text-right">
-                <p className="text-sm text-green-100">Patrons</p>
-                <p className="text-4xl font-bold">{roleStats.patrons}</p>
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                <Shield className="w-6 h-6 text-green-600" />
               </div>
-            </div>
-            <div className="h-1 bg-white/20 rounded-full">
-              <div className="h-1 bg-white rounded-full" style={{width: `${(roleStats.patrons / roleStats.total) * 100}%`}}></div>
             </div>
           </div>
         </div>
