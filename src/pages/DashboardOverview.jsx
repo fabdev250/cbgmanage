@@ -132,7 +132,7 @@ const DashboardOverview = () => {
             <h2 className="text-xl sm:text-2xl font-bold mb-1">Ikaze, Muyobozi</h2>
             <p className="text-sm sm:text-base text-blue-100">Hano hari incamake y'ibiri mu kigo mu gihembwe cyatoranijwe.</p>
           </div>
-          <button className="bg-white bg-opacity-20 hover:bg-opacity-30 px-4 sm:px-6 py-2 rounded-lg text-sm sm:text-base font-medium transition-colors duration-200 whitespace-nowrap">
+          <button className="bg-blue-500 bg-opacity-20 hover:bg-opacity-30 px-4 sm:px-6 py-2 rounded-lg text-sm sm:text-base font-medium transition-colors duration-200 whitespace-nowrap">
             Ongeramo Umunyeshuri Mushya
           </button>
         </div>
