@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 const DashboardOverview = () => {
+  const { t } = useLanguage();
+  
   // State for active selections
   const [selectedYear, setSelectedYear] = useState('2026-2027');
   const [selectedTerm, setSelectedTerm] = useState('Term 3');
@@ -51,102 +54,27 @@ const DashboardOverview = () => {
   return (
     <div className="min-h-screen bg-gray-50">
       <div className="max-w-7xl mx-auto p-4 sm:p-6 space-y-4 sm:space-y-6">
-        {/* Academic Year and Term Selection Section */}
-        <div className="bg-white rounded-lg shadow p-4 sm:p-6 lg:p-8">
-          <h2 className="text-xl sm:text-2xl font-bold text-gray-800 mb-2">
-            Ihitamo ry'Igine cy'Amashuri
-          </h2>
-          <p className="text-gray-600 text-xs sm:text-sm mb-4 sm:mb-6">
-            Hitamo umwaka w'amashuri n'igihembwe kugira ngo urebe kandi ucunge amakuru.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-6 sm:mb-8">
-            {/* Academic Year Selection */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Umwaka w'Amashuri</label>
-              <div className="relative">
-                <select 
-                  value={selectedYear}
-                  onChange={(e) => setSelectedYear(e.target.value)}
-                  className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white"
-                >
-                  {academicYears.map((year) => (
-                    <option key={year.id} value={year.year}>
-                      {year.year}
-                    </option>
-                  ))}
-                </select>
-                <span className="absolute right-4 top-1/2 transform -translate-y-1/2 px-2 py-1 bg-blue-600 text-white text-xs rounded-full">
-                  Active
-                </span>
-              </div>
-            </div>
-
-            {/* Term Selection */}
-            <div>
-              <label className="block text-sm font-medium text-gray-700 mb-2">Igihembwe</label>
-              <div className="relative">
-                <select 
-                  value={selectedTerm}
-                  onChange={(e) => setSelectedTerm(e.target.value)}
-                  className="w-full px-4 py-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none bg-white"
-                >
-                  {terms.map((term) => (
-                    <option key={term.id} value={term.name}>
-                      {term.name}
-                    </option>
-                  ))}
-                </select>
-                <span className="absolute right-4 top-1/2 transform -translate-y-1/2 px-2 py-1 bg-blue-600 text-white text-xs rounded-full">
-                  Active
-                </span>
-              </div>
-            </div>
-          </div>
-
-          {/* Soza Igihembwe Gikora Section */}
-          <div className="bg-gray-50 rounded-lg p-4 sm:p-6 mb-6 sm:mb-8">
-            <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-2">Soza Igihembwe Gikora</h3>
-            <p className="text-xs sm:text-sm text-gray-600 mb-4">
-              Soza igihembwe gikora cyangwa umwaka w'amashuri. Ibi gihembwe bizahita bitangiza ikindi, cyangwa guscoa umwaka niba ari igihembwe cya 3.
-            </p>
-            <div className="mb-3">
-              <p className="text-sm text-gray-700 mb-2">Igihe gikora ni:</p>
-              <p className="text-base font-semibold text-gray-900">{selectedYear} - {selectedTerm}</p>
-            </div>
-            <p className="text-sm text-gray-600 mb-4">
-              Guscoa iki gihembwe bizahita bitangiza ikindi, cyangwa guscoa umwaka niba ari igihembwe cya 3.
-            </p>
-            <button className="bg-red-600 hover:bg-red-700 text-white px-4 sm:px-6 py-2 rounded-lg text-sm sm:text-base font-medium transition-colors duration-200 flex items-center">
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-              Soza Igihembwe Gikora
-            </button>
-          </div>
-        </div>
-
         {/* Welcome Section */}
         <div className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg shadow p-4 sm:p-6 text-white flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-xl sm:text-2xl font-bold mb-1">Ikaze, Muyobozi</h2>
-            <p className="text-sm sm:text-base text-blue-100">Hano hari incamake y'ibiri mu kigo mu gihembwe cyatoranijwe.</p>
+            <h2 className="text-xl sm:text-2xl font-bold mb-1">{t('dashboard.welcome')}</h2>
+            <p className="text-sm sm:text-base text-blue-100">{t('dashboard.summary')}</p>
           </div>
           <button className="bg-blue-500 bg-opacity-20 hover:bg-opacity-30 px-4 sm:px-6 py-2 rounded-lg text-sm sm:text-base font-medium transition-colors duration-200 whitespace-nowrap">
-            Ongeramo Umunyeshuri Mushya
+            {t('dashboard.addStudent')}
           </button>
         </div>
 
         {/* Quick View Statistics Section */}
         <div className="bg-white rounded-lg shadow p-4 sm:p-6">
-          <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-4 sm:mb-6">Incamake y'Amakuru</h3>
+          <h3 className="text-base sm:text-lg font-semibold text-gray-800 mb-4 sm:mb-6">{t('dashboard.quickStats')}</h3>
 
           {/* Main Statistics Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
             {/* Total Students Card */}
             <div className="bg-gray-50 rounded-lg p-5 border border-gray-200 hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between mb-3">
-                <div className="text-sm text-gray-600 font-medium">Abanyeshuri Bose</div>
+                <div className="text-sm text-gray-600 font-medium">{t('dashboard.totalStudents')}</div>
                 <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                 </svg>
@@ -158,7 +86,7 @@ const DashboardOverview = () => {
             {/* O-Level Students Card */}
             <div className="bg-gray-50 rounded-lg p-5 border border-gray-200 hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between mb-3">
-                <div className="text-sm text-gray-600 font-medium">Abanyeshuri (O-Level)</div>
+                <div className="text-sm text-gray-600 font-medium">{t('dashboard.oLevelStudents')}</div>
                 <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                 </svg>
@@ -170,7 +98,7 @@ const DashboardOverview = () => {
             {/* A-Level Students Card */}
             <div className="bg-gray-50 rounded-lg p-5 border border-gray-200 hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between mb-3">
-                <div className="text-sm text-gray-600 font-medium">Abanyeshuri (A-Level)</div>
+                <div className="text-sm text-gray-600 font-medium">{t('dashboard.aLevelStudents')}</div>
                 <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
                 </svg>
@@ -182,7 +110,7 @@ const DashboardOverview = () => {
             {/* Staff Members Card */}
             <div className="bg-gray-50 rounded-lg p-5 border border-gray-200 hover:shadow-md transition-shadow">
               <div className="flex items-center justify-between mb-3">
-                <div className="text-sm text-gray-600 font-medium">Abakozi Bakora</div>
+                <div className="text-sm text-gray-600 font-medium">{t('dashboard.staffMembers')}</div>
                 <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
@@ -197,8 +125,8 @@ const DashboardOverview = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
           {/* Student Distribution Chart */}
           <div className="lg:col-span-2 bg-white rounded-lg shadow p-4 sm:p-6">
-            <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2">Umubare w'Abanyeshuri mu Ishuri</h3>
-            <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6">Igabanya rya ibitsina by'abanyeshuri mu mashuri yose mu gihembwe cyatoranijwe.</p>
+            <h3 className="text-base sm:text-lg font-bold text-gray-800 mb-2">{t('dashboard.studentDistribution')}</h3>
+            <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6">{t('dashboard.distributionDesc')}</p>
             
             {/* Interactive Line Graph */}
             <div className="relative h-56 sm:h-72 mt-4">
@@ -350,7 +278,7 @@ const DashboardOverview = () => {
           {/* Quick Links */}
           <div className="bg-white rounded-lg shadow p-4 sm:p-6">
             <div className="flex items-center justify-between mb-4">
-              <h3 className="text-base sm:text-lg font-bold text-gray-800">Aho unyura vuba</h3>
+              <h3 className="text-base sm:text-lg font-bold text-gray-800">{t('dashboard.quickLinks')}</h3>
               <button className="text-gray-400 hover:text-gray-600">
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
@@ -358,7 +286,7 @@ const DashboardOverview = () => {
                 </svg>
               </button>
             </div>
-            <p className="text-xs sm:text-sm text-gray-600 mb-4">Kugera vuba ku bikorwa bya buri munsi.</p>
+            <p className="text-xs sm:text-sm text-gray-600 mb-4">{t('dashboard.quickLinksDesc')}</p>
             
             <div className="space-y-3">
               <div className="grid grid-cols-2 gap-3">
@@ -392,10 +320,10 @@ const DashboardOverview = () => {
         {/* Recent Activities Section */}
         <div className="bg-white rounded-lg shadow p-4 sm:p-6">
           <div className="flex items-center justify-between mb-4">
-            <h3 className="text-base sm:text-lg font-bold text-gray-800">Ibikorwa Biheruka</h3>
-            <a href="#" className="text-blue-600 hover:text-blue-700 text-sm font-medium">Reba byose</a>
+            <h3 className="text-base sm:text-lg font-bold text-gray-800">{t('dashboard.recentActivities')}</h3>
+            <a href="#" className="text-blue-600 hover:text-blue-700 text-sm font-medium">{t('dashboard.viewAll')}</a>
           </div>
-          <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6">Ururutonde rw'ibikorwa biheruka muri sisitemu.</p>
+          <p className="text-xs sm:text-sm text-gray-600 mb-4 sm:mb-6">{t('dashboard.recentActivitiesDesc')}</p>
           
           <div className="space-y-4">
             {/* Activity Item 1 */}
