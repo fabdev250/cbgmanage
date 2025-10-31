@@ -3,7 +3,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   Home, GraduationCap, UserPlus, Bed, CalendarDays, BarChart3, 
   Utensils, Activity, Megaphone, UsersRound, Sliders, BookMarked, 
-  Building2, LogOut
+  Building2, LogOut,
+  Settings2,
+  SettingsIcon
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -21,7 +23,7 @@ const Sidebar = () => {
     { id: 'activities', label: 'Activities', icon: Activity, path: '/activities' },
     { id: 'announcements', label: 'Announcements', icon: Megaphone, path: '/announcements' },
     { id: 'users', label: 'Users', icon: UsersRound, path: '/users' },
-    { id: 'configuration', label: 'Configuration', icon: Sliders, path: '/configuration' },
+    { id: 'Settings', label: 'Settings', icon: SettingsIcon, path: '/settings' },
     { id: 'guidelines', label: 'Guidelines', icon: BookMarked, path: '/guidelines' }
   ];
 
