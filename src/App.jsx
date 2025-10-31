@@ -13,6 +13,7 @@ import Program from './pages/Program';
 import Rooms from './pages/Rooms';
 import Refectory from './pages/Refectory';
 import Settings from './pages/Configuration';
+import Announcements from './pages/Announcements';
 
 function App() {
   return (
@@ -36,7 +37,7 @@ function App() {
                 <Route path="/reports" element={<Reports />} />
                 <Route path="/imyicarire" element={<GenericPage title="Behavior" />} />
                 <Route path="/ibikorwa" element={<GenericPage title="Activities" />} />
-                <Route path="/amatangazo" element={<GenericPage title="Announcements" />} />
+                <Route path="/Announcements" element={<Announcements />} />
                 <Route path="/abakoresha" element={<GenericPage title="Users" />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/amabwiriza" element={<GenericPage title="Guidelines" />} />
