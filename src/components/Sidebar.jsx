@@ -1,68 +1,100 @@
 import React from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { 
+  Home, Users, UserPlus, Building2, BookOpen, BarChart3, Star, 
+  Calendar, Bell, UserCog, Settings, FileText, Wrench, LogOut ,Table2Icon
+} from 'lucide-react';
 
-const Sidebar = ({ activeSection, setActiveSection }) => {
+const Sidebar = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const menuItems = [
-    { id: 'imboneza', label: 'Imboneza', icon: '🏠' },
-    { id: 'abanyeshuri', label: 'Abanyeshuri', icon: '👨‍🎓' },
-    { id: 'impushya', label: 'Impushya', icon: '🆕' },
-    { id: 'amacumbi', label: 'Amacumbi', icon: '🏢' },
-    { id: 'porogaramu', label: 'Porogaramu', icon: '📚' },
-    { id: 'raporu', label: 'Raporu', icon: '📊' },
-    { id: 'imyicarire', label: 'Imyicarire', icon: '⭐' },
-    { id: 'ibikorwa', label: 'Ibikorwa', icon: '📅' },
-    { id: 'amatangazo', label: 'Amatangazo', icon: '📢' },
-    { id: 'abakoresha', label: 'Abakoresha', icon: '👥' },
-    { id: 'igenamiterere', label: 'Igenamiterere', icon: '⚙️' },
-    { id: 'amabwiriza', label: 'Amabwiriza', icon: '📋' },
-    { id: 'shyiraho-porogaramu', label: 'Shyiraho Porogaramu', icon: '🛠️' },
-    { id: 'sohoka', label: 'Sohoka', icon: '🚪' }
+    { id: 'dashboard', label: 'Dashboard', icon: Home, path: '/' },
+    { id: 'students', label: 'Students', icon: Users, path: '/students' },
+    { id: 'new-admission', label: 'New Admission', icon: UserPlus, path: '/admission' },
+    { id: 'rooms', label: 'Rooms', icon: Building2, path: '/rooms' },
+    { id: 'programs', label: 'Programs', icon: BookOpen, path: '/programs' },
+    { id: 'reports', label: 'Reports', icon: BarChart3, path: '/reports' },
+    { id: 'seating', label: 'Seating', icon: Table2Icon, path: '/seating' },
+    { id: 'activities', label: 'Activities', icon: Calendar, path: '/activities' },
+    { id: 'announcements', label: 'Announcements', icon: Bell, path: '/announcements' },
+    { id: 'users', label: 'Users', icon: UserCog, path: '/users' },
+    { id: 'configuration', label: 'Configuration', icon: Settings, path: '/configuration' },
+    { id: 'guidelines', label: 'Guidelines', icon: FileText, path: '/guidelines' }
   ];
 
+  const handleLogout = () => {
+    console.log('Logging out...');
+    // Add your logout logic here
+    // navigate('/login');
+    alert('Logout functionality would be implemented here!');
+  };
+
+  const isActive = (path) => {
+    return location.pathname === path;
+  };
+
   return (
-    <div className="w-64 bg-white shadow-lg h-screen fixed left-0 top-0 flex flex-col">
+    <div className="w-64 bg-gradient-to-b from-blue-600 to-blue-800 shadow-2xl h-screen fixed left-0 top-0 flex flex-col">
       {/* Header */}
-      <div className="p-6 border-b border-gray-200">
-        <h1 className="text-xl font-bold text-gray-800">
-          BOARDING SCHOOL MANAGER
-        </h1>
-        <p className="text-sm text-gray-600 mt-1">
-          BSM v1.0
-        </p>
+      <div className="p-6 border-b border-blue-500/30">
+        <div className="flex items-center space-x-3">
+          <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
+            <Building2 className="w-6 h-6 text-blue-600" />
+          </div>
+          <div>
+            <h1 className="text-lg font-bold text-white">
+              BMS
+            </h1>
+            <p className="text-xs text-blue-200">
+              Management System
+            </p>
+          </div>
+        </div>
       </div>
 
-      {/* Navigation Menu with Scroll */}
-      <nav className="flex-1 overflow-y-auto p-4">
+      {/* Navigation Menu with hidden scrollbar */}
+      <nav className="flex-1 overflow-y-auto p-4" style={{ 
+        scrollbarWidth: 'none', 
+        msOverflowStyle: 'none' 
+      }}>
+        <style>{`
+          nav::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>
         <ul className="space-y-1">
-          {menuItems.map((item) => (
-            <li key={item.id}>
-              <button
-                onClick={() => setActiveSection(item.id)}
-                className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition duration-200 ${
-                  activeSection === item.id
-                    ? 'bg-blue-100 text-blue-700 border-r-4 border-blue-600'
-                    : 'text-gray-700 hover:bg-gray-100'
-                } ${
-                  item.id === 'sohoka' ? 'mt-4 border-t border-gray-200 pt-4' : ''
-                }`}
-              >
-                <span className="text-lg">{item.icon}</span>
-                <span className="font-medium text-left flex-1">{item.label}</span>
-              </button>
-            </li>
-          ))}
+          {menuItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <li key={item.id}>
+                <Link
+                  to={item.path}
+                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 ${
+                    isActive(item.path)
+                      ? 'bg-white text-blue-700 shadow-lg transform scale-105'
+                      : 'text-blue-100 hover:bg-blue-700/50 hover:text-white'
+                  }`}
+                >
+                  <Icon className="w-5 h-5" />
+                  <span className="font-medium text-left flex-1 text-sm">{item.label}</span>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </nav>
 
-      {/* Current Term Info */}
-      <div className="p-4 border-t border-gray-200">
-        <div className="bg-blue-50 p-4 rounded-lg border border-blue-200">
-          <div className="text-sm text-blue-800 font-medium">
-            Igliembwe Gikora
-          </div>
-          <div className="text-xs text-blue-600 mt-1">
-            Term 2 - 2026/2027
-          </div>
-        </div>
+      {/* Logout Button */}
+      <div className="p-4 border-t border-blue-500/30">
+        <button
+          onClick={handleLogout}
+          className="w-full flex items-center space-x-3 px-4 py-3 rounded-lg transition-all duration-200 text-blue-100 hover:bg-red-500 hover:text-white group"
+        >
+          <LogOut className="w-5 h-5 group-hover:animate-pulse" />
+          <span className="font-medium text-left flex-1 text-sm">Logout</span>
+        </button>
       </div>
     </div>
   );
