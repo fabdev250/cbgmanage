@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import Dashboard from './pages/Dashboard';
+import DashboardOverview from './pages/DashboardOverview';
 import Students from './pages/Students';
 import GenericPage from './pages/GenericPage';
 import Admission from './pages/Admission';
