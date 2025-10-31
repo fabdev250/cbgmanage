@@ -39,6 +39,10 @@ const TopBar = () => {
       { name: 'Dashboard', path: '/' },
       { name: 'Programs', path: '/programs' }
     ],
+    '/refectory': [
+      { name: 'Dashboard', path: '/' },
+      { name: 'Refectory', path: '/refectory' }
+    ],
     '/raporu': [
       { name: 'Dashboard', path: '/' },
       { name: 'Reports', path: '/raporu' }
