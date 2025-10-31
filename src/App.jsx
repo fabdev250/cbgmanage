@@ -7,7 +7,7 @@ import DashboardOverview from './pages/DashboardOverview';
 import Students from './pages/Students';
 import GenericPage from './pages/GenericPage';
 import Admission from './pages/Admission';
-
+import Reports from './pages/Reports';
 function App() {
   return (
     <Router>
@@ -25,7 +25,7 @@ function App() {
               <Route path="/admission" element={<Admission />} />
               <Route path="/rooms" element={<GenericPage title="Amacumbi" />} />
               <Route path="/porogaramu" element={<GenericPage title="Porogaramu" />} />
-              <Route path="/raporu" element={<GenericPage title="Raporu" />} />
+              <Route path="/reports" element={<Reports />} />
               <Route path="/imyicarire" element={<GenericPage title="Imyicarire" />} />
               <Route path="/ibikorwa" element={<GenericPage title="Ibikorwa" />} />
               <Route path="/amatangazo" element={<GenericPage title="Amatangazo" />} />
