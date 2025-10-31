@@ -9,6 +9,7 @@ import Students from './pages/Students';
 import GenericPage from './pages/GenericPage';
 import Admission from './pages/Admission';
 import Program from './pages/Program';
+import Refectory from './pages/Refectory';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/admission" element={<Admission />} />
                 <Route path="/rooms" element={<GenericPage title="Rooms" />} />
                 <Route path="/programs" element={<Program />} />
+                <Route path="/seating" element={<Refectory />} />
                 <Route path="/raporu" element={<GenericPage title="Reports" />} />
                 <Route path="/imyicarire" element={<GenericPage title="Behavior" />} />
                 <Route path="/ibikorwa" element={<GenericPage title="Activities" />} />
