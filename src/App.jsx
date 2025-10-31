@@ -10,6 +10,8 @@ import GenericPage from './pages/GenericPage';
 import Admission from './pages/Admission';
 import Program from './pages/Program';
 import Rooms from './pages/Rooms';
+import Refectory from './pages/Refectory';
+import Settings from './pages/Configuration';
 
 function App() {
   return (
@@ -29,12 +31,13 @@ function App() {
                 <Route path="/admission" element={<Admission />} />
                 <Route path="/rooms" element={<Rooms />} />
                 <Route path="/programs" element={<Program />} />
+                <Route path="/seating" element={<Refectory />} />
                 <Route path="/raporu" element={<GenericPage title="Reports" />} />
                 <Route path="/imyicarire" element={<GenericPage title="Behavior" />} />
                 <Route path="/ibikorwa" element={<GenericPage title="Activities" />} />
                 <Route path="/amatangazo" element={<GenericPage title="Announcements" />} />
                 <Route path="/abakoresha" element={<GenericPage title="Users" />} />
-                <Route path="/igenamiterere" element={<GenericPage title="Configuration" />} />
+                <Route path="/settings" element={<Settings />} />
                 <Route path="/amabwiriza" element={<GenericPage title="Guidelines" />} />
                 <Route path="/shyiraho-porogaramu" element={<GenericPage title="Setup Program" />} />
               </Routes>

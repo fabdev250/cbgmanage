@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { 
   Home, Users, UserPlus, Building2, BookOpen, BarChart3, Star, 
-  Calendar, Bell, UserCog, Settings, FileText, Wrench, LogOut 
+  Calendar, Bell, UserCog, Settings, FileText, Wrench, LogOut ,Table2Icon
 } from 'lucide-react';
 
 const Sidebar = () => {
@@ -16,11 +16,11 @@ const Sidebar = () => {
     { id: 'rooms', label: 'Rooms', icon: Building2, path: '/rooms' },
     { id: 'programs', label: 'Programs', icon: BookOpen, path: '/programs' },
     { id: 'reports', label: 'Reports', icon: BarChart3, path: '/reports' },
-    { id: 'behavior', label: 'Behavior', icon: Star, path: '/behavior' },
+    { id: 'seating', label: 'Seating', icon: Table2Icon, path: '/seating' },
     { id: 'activities', label: 'Activities', icon: Calendar, path: '/activities' },
     { id: 'announcements', label: 'Announcements', icon: Bell, path: '/announcements' },
     { id: 'users', label: 'Users', icon: UserCog, path: '/users' },
-    { id: 'configuration', label: 'Configuration', icon: Settings, path: '/configuration' },
+    { id: 'Settings', label: 'Settings', icon: Settings, path: '/settings' },
     { id: 'guidelines', label: 'Guidelines', icon: FileText, path: '/guidelines' }
   ];
 
