@@ -12,10 +12,8 @@ import Admission from './pages/Admission';
 import Reports from './pages/Reports';
 import Program from './pages/Program';
 import Refectory from './pages/Refectory';
-import Activities from './pages/Activities';
-import Users from './pages/Users';
-import Configuration from './pages/Configuration';
-import Rooms from './pages/Rooms';
+import Settings from './pages/Configuration';
+import Announcements from './pages/Announcements';
 
 function App() {
   return (
@@ -39,10 +37,10 @@ function App() {
                 <Route path="/seating" element={<Refectory />} />
                 <Route path="/reports" element={<Reports />} />
                 <Route path="/imyicarire" element={<GenericPage title="Behavior" />} />
-                <Route path="/activities" element={<Activities />} />
-                <Route path="/amatangazo" element={<GenericPage title="Announcements" />} />
-                <Route path="/users" element={<Users />} />
-                <Route path="/settings" element={<Configuration />} />
+                <Route path="/ibikorwa" element={<GenericPage title="Activities" />} />
+                <Route path="/Announcements" element={<Announcements />} />
+                <Route path="/abakoresha" element={<GenericPage title="Users" />} />
+                <Route path="/settings" element={<Settings />} />
                 <Route path="/amabwiriza" element={<GenericPage title="Guidelines" />} />
                 <Route path="/shyiraho-porogaramu" element={<GenericPage title="Setup Program" />} />
               </Routes>
