@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { LanguageProvider } from './context/LanguageContext';
+import { ToastProvider } from './components/Toast';
 import Sidebar from './components/Sidebar';
 import TopBar from './components/TopBar';
 import Dashboard from './pages/Dashboard';
@@ -10,19 +11,21 @@ import GenericPage from './pages/GenericPage';
 import Admission from './pages/Admission';
 import Reports from './pages/Reports';
 import Program from './pages/Program';
-import Rooms from './pages/Rooms';
-import Refectory from './pages/Refectory';
-import Settings from './pages/Configuration';
-import Announcements from './pages/Announcements';
+import Refectory from "./pages/Refectory";
+import Settings from "./pages/Configuration";
+import Rooms from "./pages/Rooms";
+
+
 
 function App() {
   return (
     <LanguageProvider>
-      <Router>
-        <div className="min-h-screen bg-gray-50">
-          {/* Fixed positioned components */}
-          <Sidebar />
-          <TopBar />
+      <ToastProvider>
+        <Router>
+          <div className="min-h-screen bg-gray-50">
+            {/* Fixed positioned components */}
+            <Sidebar />
+            <TopBar />
           
           {/* Main content with proper spacing */}
           <main className="ml-64 pt-16 min-h-screen">
@@ -37,7 +40,7 @@ function App() {
                 <Route path="/reports" element={<Reports />} />
                 <Route path="/imyicarire" element={<GenericPage title="Behavior" />} />
                 <Route path="/ibikorwa" element={<GenericPage title="Activities" />} />
-                <Route path="/Announcements" element={<Announcements />} />
+                <Route path="/amatangazo" element={<GenericPage title="Announcements" />} />
                 <Route path="/abakoresha" element={<GenericPage title="Users" />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/amabwiriza" element={<GenericPage title="Guidelines" />} />
@@ -47,6 +50,7 @@ function App() {
           </main>
         </div>
       </Router>
+      </ToastProvider>
     </LanguageProvider>
   );
 }
