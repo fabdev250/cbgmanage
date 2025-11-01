@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { User } from 'lucide-react';
 import { LanguageProvider } from './context/LanguageContext';
 import { ToastProvider } from './components/Toast';
 import Sidebar from './components/Sidebar';
@@ -14,6 +15,9 @@ import Program from './pages/Program';
 import Refectory from './pages/Refectory';
 import Settings from './pages/Configuration';
 import Announcements from './pages/Announcements';
+import Rooms from './pages/Rooms';
+import Users from './pages/Users';
+
 
 function App() {
   return (
@@ -39,7 +43,7 @@ function App() {
                 <Route path="/imyicarire" element={<GenericPage title="Behavior" />} />
                 <Route path="/ibikorwa" element={<GenericPage title="Activities" />} />
                 <Route path="/Announcements" element={<Announcements />} />
-                <Route path="/abakoresha" element={<GenericPage title="Users" />} />
+                <Route path="/users" element={<Users />} />
                 <Route path="/settings" element={<Settings />} />
                 <Route path="/amabwiriza" element={<GenericPage title="Guidelines" />} />
                 <Route path="/shyiraho-porogaramu" element={<GenericPage title="Setup Program" />} />
